@@ -98,7 +98,7 @@ export default function Registration() {
         }
       );
 
-      if (response.data.success) {
+      if (response.data) {
         console.log("Registration successful:", response.data);
         navigate("/email-verification?email=" + email);
       } else {
