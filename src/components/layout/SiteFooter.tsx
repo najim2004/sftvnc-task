@@ -1,6 +1,6 @@
 export default function SiteFooter() {
   return (
-    <footer className="bg-[#0F3B34] text-white mt-24" id="footer">
+    <footer className="bg-[#0F3B34] text-white" id="footer">
       <div className="relative overflow-hidden">
         <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
           <div className="flex flex-col md:flex-row justify-between items-start  py-[100px]">
