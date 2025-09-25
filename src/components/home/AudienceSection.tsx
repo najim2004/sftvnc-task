@@ -2,7 +2,7 @@ function AudienceSection() {
   return (
     <section
       id="audiences"
-      className="max-w-[1200px] mx-auto px-6 lg:px-8 py-20 space-y-20"
+      className="max-w-[1200px] mx-auto px-6 lg:px-0 mt-5 md:mt-10 space-y-20"
     >
       <div className="text-center max-w-2xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
@@ -38,7 +38,7 @@ function AudienceSection() {
             </li>
           </ul>
         </div>
-        <div className="relative">
+        <div className="relative image-fade-bottom">
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/60d1f2a3770b414a7f89deeafe9b8b431e6bf40c?width=1220"
             alt="App screenshots"
@@ -48,7 +48,7 @@ function AudienceSection() {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        <div className="order-2 lg:order-1 relative">
+        <div className="order-2 lg:order-1 relative image-fade-bottom">
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/aa4a2252b4983e69983e76f896d2b75114fafc6b?width=1220"
             alt="Dashboard"
@@ -104,7 +104,7 @@ function AudienceSection() {
             </li>
           </ul>
         </div>
-        <div className="relative">
+        <div className="relative image-fade-bottom">
           <img
             src="https://api.builder.io/api/v1/image/assets/TEMP/717d1b350c22e0fa29f4793fc09fcdc50d9d258c?width=1220"
             alt="Mobile app"

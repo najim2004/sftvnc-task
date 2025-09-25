@@ -20,12 +20,15 @@ function Testimonials() {
     },
   ];
   return (
-    <section id="testimonials" className="max-w-[1200px] mx-auto px-6 lg:px-8 py-24">
+    <section
+      id="testimonials"
+      className="max-w-[1200px] mx-auto px-6 lg:px-8 py-24"
+    >
       <div className="text-center max-w-2xl mx-auto">
         <h2 className="text-3xl md:text-5xl font-bold text-gray-800">
           What Our Users Are Saying
         </h2>
-        <p className="text-gray-600 mt-2">
+        <p className="text-gray-600 mt-2 max-w-[455px] mx-auto">
           Real stories from clients, employees, and business owners who use our
           app every day.
         </p>

@@ -24,7 +24,7 @@ function Features() {
   return (
     <section
       id="features"
-      className="max-w-[1200px] mx-auto px-6 lg:px-8 py-14"
+      className="max-w-[1200px] mx-auto px-6 lg:px-0 my-10 md:mt-20 md:mb-[170px]"
     >
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
         {items.map((f) => (
