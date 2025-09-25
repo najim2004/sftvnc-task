@@ -208,7 +208,9 @@ export default function NewPassword() {
               {otp.map((digit, index) => (
                 <input
                   key={index}
-                  ref={(el) => (otpInputRefs.current[index] = el)}
+                  ref={(el) => {
+                    otpInputRefs.current[index] = el;
+                  }}
                   type="text"
                   maxLength={1}
                   value={digit}
