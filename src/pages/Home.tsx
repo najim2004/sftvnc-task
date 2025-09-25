@@ -3,10 +3,65 @@ import Features from "@/components/home/Features";
 import AudienceSection from "@/components/home/AudienceSection";
 import Testimonials from "@/components/home/Testimonials";
 import FAQ from "@/components/home/FAQ";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function Home() {
+  const [userDetails, setUserDetails] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      const token = localStorage.getItem("authToken");
+      if (!token) {
+        setError("User not authenticated.");
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const response = await axios.get(
+          "https://apitest.softvencefsd.xyz/api/user-detail",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        if (response.data.success) {
+          setUserDetails(response.data.user);
+        } else {
+          setError(response.data.message || "Failed to fetch user details.");
+        }
+      } catch (err: any) {
+        console.error("User details fetch error:", err);
+        if (err.response && err.response.data && err.response.data.message) {
+          setError(err.response.data.message);
+        } else {
+          setError("An unexpected error occurred while fetching user details.");
+        }
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUserDetails();
+  }, []);
+
   return (
     <div>
+      {/* User Details Section */}
+      {loading && <p className="text-center mt-4">Loading user details...</p>}
+      {error && <p className="text-red-500 text-center mt-4">{error}</p>}
+      {userDetails && (
+        <div className="max-w-[1200px] mx-auto mt-8 p-4 border rounded-lg shadow-md">
+          <h2 className="text-2xl font-bold text-gray-800">Welcome, {userDetails.first_name} {userDetails.last_name}!</h2>
+          <p className="text-gray-600">Email: {userDetails.email}</p>
+          {/* Add more user details as needed */}
+        </div>
+      )}
+
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">

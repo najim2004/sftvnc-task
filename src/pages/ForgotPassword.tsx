@@ -1,14 +1,64 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
+import axios from "axios";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateEmail = (email: string) => {
+    return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle password reset logic here
-    console.log("Reset password for:", email);
+    setError(null);
+    setSuccessMessage(null);
+
+    if (!email || !validateEmail(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const response = await axios.post(
+        "https://apitest.softvencefsd.xyz/api/forgot-password",
+        {
+          email,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+  console.log(response?.data);
+      if (response.data) {
+        setSuccessMessage(
+          response.data.message || "Password reset link sent to your email."
+        );
+        navigate("/new-password?email=" + email); // Redirect to new password page with email
+      } else {
+        setError(
+          response.data.message ||
+            "Failed to send reset link. Please try again."
+        );
+      }
+    } catch (err: any) {
+      console.error("Forgot password error:", err);
+      if (err.response && err.response.data && err.response.data.message) {
+        setError(err.response.data.message);
+      } else {
+        setError("An unexpected error occurred. Please try again later.");
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -36,6 +86,13 @@ export default function ForgotPassword() {
             </p>
           </div>
 
+          {error && <p className="text-red-500 text-sm text-center">{error}</p>}
+          {successMessage && (
+            <p className="text-green-500 text-sm text-center">
+              {successMessage}
+            </p>
+          )}
+
           {/* Reset Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Email Field */}
@@ -47,6 +104,7 @@ export default function ForgotPassword() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 className="w-full px-3 py-4 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                disabled={loading}
               />
             </div>
 
@@ -54,8 +112,9 @@ export default function ForgotPassword() {
             <button
               type="submit"
               className="w-full bg-primary hover:brightness-110 text-white font-semibold py-3 px-4 rounded-lg transition-all shadow-md shadow-primary/20"
+              disabled={loading}
             >
-              Reset Password
+              {loading ? "Sending..." : "Reset Password"}
             </button>
           </form>
         </div>

@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 
 export default function RoleSelection({
-  onSelectRole,
+  onRoleSelect,
 }: {
-  onSelectRole: (selectedRole: string) => void;
+  onRoleSelect: (selectedRole: string) => void;
 }) {
   return (
     <div className="min-h-screen w-full bg-white flex flex-col items-center justify-center px-6 py-20 -mt-16">
@@ -23,7 +23,7 @@ export default function RoleSelection({
         <div className="flex flex-col sm:flex-row gap-8 w-full max-w-2xl">
           {/* Client Card */}
           <div
-            onClick={() => onSelectRole("client")}
+            onClick={() => onRoleSelect("client")}
             className="group flex-1 bg-white border-2 border-primary-100 rounded-2xl p-8 text-center hover:border-primary-200 hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
           >
             <div className="mb-6">
@@ -43,7 +43,7 @@ export default function RoleSelection({
 
           {/* Business Owner Card */}
           <div
-            onClick={() => onSelectRole("business-owner")}
+            onClick={() => onRoleSelect("business-owner")}
             className="group flex-1 bg-white border-2 border-gray-200 rounded-2xl p-8 text-center hover:border-primary-200 hover:shadow-lg transition-all duration-200 hover:-translate-y-1"
           >
             <div className="mb-6">

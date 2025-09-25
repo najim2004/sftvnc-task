@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import ForgotPassword from "./pages/ForgotPassword";
 import EmailVerification from "./pages/EmailVerification";
 import Registration from "./pages/Registration";
+import NewPassword from "./pages/NewPassowrd"; // Import NewPassword
 
 const App = () => (
   <TooltipProvider>
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/registration" element={<Registration />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
+          <Route path="/new-password" element={<NewPassword />} /> {/* Add NewPassword route */}
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Route>
