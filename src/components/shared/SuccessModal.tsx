@@ -1,15 +1,17 @@
 import { Navigate } from "react-router-dom";
+import successImg from "../../../public/success.png";
 
-export default function SuccessPage({
+export default function SuccessModal({
   message = "Your password has been reset successfully.",
   description = " You can now log in with your new password.",
   href = "/login",
   buttonText = "Go to Login",
 }) {
   return (
-    <div className="min-h-screen bg-white flex flex-col -mt-16">
+    <div className="min-h-screen bg-white -mt-16">
       {/* Main Content */}
-      <div className="flex-1 flex items-center justify-center px-6 py-8">
+      <div className="flex items-center justify-center px-6 py-8">
+        <img src={successImg} alt="" className="size-[330px] mx-auto" />
         <div className="w-full max-w-md space-y-8">
           <div className="space-y-4">
             <h1 className="text-3xl font-bold text-gray-800">{message}</h1>
@@ -23,7 +25,7 @@ export default function SuccessPage({
             {buttonText}
           </button>
         </div>
-      </div> 
+      </div>
     </div>
   );
 }
